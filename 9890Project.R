@@ -361,8 +361,7 @@ s       =    apply(X, 2, sd)
 #Elastic net coefficient
 #cv.eln          =     cv.glmnet(X, y, intercept = FALSE, alpha = 0.5, nfolds = 10)
 #d2.fit.eln      =     glmnet(X.train, y.train,intercept = FALSE, alpha = 0.5, lambda = cv.eln$lambda.min)
-beta.hat.eln     =     d2.fit.eln$beta[ ,d2.fit.eln$lambda==cv.eln$lambda.min]
-beta.hat.eln     =     beta.hat.eln*s #normalize
+beta.hat.eln     =     d2.fit.eln$beta[ ,d2.fit.eln$lambda==cv.eln$lambda.min]*s
 beta.hat.eln     =     beta.hat.eln[-1]#take out the intercept.
 betaS.eln         =     data.frame(features, as.vector(beta.hat.eln))
 colnames(betaS.eln)     =     c( "feature", "value")
@@ -371,8 +370,7 @@ colnames(betaS.eln)     =     c( "feature", "value")
 #cv.rid           =     cv.glmnet(X, y, intercept = FALSE, alpha = 0, nfolds = 10)
 #d2.fit.rid       =     glmnet(X, y,intercept = FALSE, alpha = 0, lambda = cv.rid$lambda.min)
 
-beta.hat.rid     =     d2.fit.rid$beta[ ,d2.fit.rid$lambda==cv.rid$lambda.min]
-beta.hat.rid     =     beta.hat.rid*s #normalize
+beta.hat.rid     =     d2.fit.rid$beta[ ,d2.fit.rid$lambda==cv.rid$lambda.min]*s
 beta.hat.rid     =     beta.hat.rid[-1]#take out the intercept.
 betaS.rid         =     data.frame(features, as.vector(beta.hat.rid))
 colnames(betaS.rid)     =     c( "feature", "value")
@@ -380,8 +378,7 @@ colnames(betaS.rid)     =     c( "feature", "value")
 #Lasso coefficient
 #cv.las          =     cv.glmnet(X, y, intercept = FALSE, alpha = 1, nfolds = 10)
 #d2.fit.las      =     glmnet(X, y,intercept = FALSE, alpha = 1, lambda = cv.las$lambda.min)
-beta.hat.las     =     d2.fit.las$beta[ ,d2.fit.las$lambda==cv.las$lambda.min]
-beta.hat.las     =     beta.hat.las*s #normalize
+beta.hat.las     =     d2.fit.las$beta[ ,d2.fit.las$lambda==cv.las$lambda.min]*s
 beta.hat.las     =     beta.hat.las[-1]#take out the intercept.
 betaS.las         =     data.frame(features, as.vector(beta.hat.las))
 colnames(betaS.las)     =     c( "feature", "value")
@@ -410,7 +407,7 @@ enPlot =  ggplot(betaS.eln, aes(x=feature, y=value)) +
   xlab("Elastic net") + ylab("Value")
 
 
-rgPlot =  ggplot(betaS.rids, aes(x=feature, y=value)) +
+rgPlot =  ggplot(betaS.rid, aes(x=feature, y=value)) +
   geom_bar(stat = "identity", fill="white", colour="black")+
   theme(axis.text.x = element_text(angle=90, hjust=1))+
   xlab("Ridge") + ylab("Value")
