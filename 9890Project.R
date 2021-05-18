@@ -26,10 +26,13 @@ library(ggplot2)
 library(gridExtra)
 library(grid)
 library(lattice)
+library(tibble)
+library(readxl)
 
+## read data set
+files = list.files(pattern = "*.csv", full.names = T)
+d = sapply(files, read_csv, simplify = FALSE) %>% bind_rows(.id = "id")
 
-## read data
-d <- read_csv("./US_births(2018).csv")
 
 d2 = d
 #numeric code missing values to na
@@ -246,10 +249,10 @@ mean(las.time)
 mean(eln.time)
 
 #(d) For one on the 100 samples, show the side-by-side boxplots of train and test residuals (1 slide).
-X.os.train          
-y.os.train          
-X.os.test          
-y.os.test          
+#X.os.train          
+#y.os.train          
+#X.os.test          
+#y.os.test          
 
 
 
