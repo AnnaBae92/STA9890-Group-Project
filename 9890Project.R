@@ -29,10 +29,10 @@ library(lattice)
 library(tibble)
 library(readxl)
 
+
 ## read data set
 files = list.files(pattern = "*.csv", full.names = T)
-d = sapply(files, read_csv, simplify = FALSE) %>% bind_rows(.id = "id")
-
+d = do.call(rbind, lapply(files, read.csv))
 
 d2 = d
 #numeric code missing values to na
