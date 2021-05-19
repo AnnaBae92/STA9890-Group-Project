@@ -36,11 +36,11 @@ d = do.call(rbind, lapply(files, read.csv))
 
 d2 = d
 #numeric code missing values to na
-d2['BMI'] <- na_if(d2['BMI'], 99.9) #86200 missing
+d2['BMI'] <- na_if(d2['BMI'], 99.9) 
 d2['CIG_0'] <- na_if(d2['CIG_0'], 99)                
 d2['ATTEND'] <- na_if(d2['ATTEND'], 9) 
 d2['DLMP_MM'] <- na_if(d2['DLMP_MM'], 99) 
-d2['DBWT'] <- na_if(d2['DBWT'],9999) #normally distributed    
+d2['DBWT'] <- na_if(d2['DBWT'],9999)  
 #MAGER # normally distributed, no missing value
 d2['M_Ht_In'] <- na_if(d2['M_Ht_In'], 99) 
 d2['PREVIS'] <- na_if(d2['PREVIS'], 99)  
